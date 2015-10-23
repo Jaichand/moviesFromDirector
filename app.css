@@ -1,1 +1,16 @@
 
+.imge,.info-div{
+      float: left;
+}
+.imge{
+    height: 200;
+}
+.info-div{
+  margin-left: 30px;
+  width: 70%;
+}
+.movie-div{
+  clear: both;
+}
+
+
