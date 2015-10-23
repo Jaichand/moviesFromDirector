@@ -1,28 +1,31 @@
 <html ng-app="store">
-<head >
-  <title>Movie Rating</title>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-  <script type="text/javascript" src="app.js"></script>
-  <link rel="stylesheet" type="text/css" href="app.css"/>
-</head>
-<body ng-controller="directorController as director">
-  <form ng-submit="director.searchDirector()">
-    <input  type="text" placeholder="Quentin Tarantino" ng-model="director.x"/>
-    <input ng-click="director.toggle=true" type="submit" value="submit"/>
-  </form>
-         <div ng-show = "director.toggle" ng-class="'movie-div'" ng-repeat="movies in director.product | filter:director.x" >
-              <img ng-class="'imge'" ng-src="{{movies.poster}}"/>
-            <div ng-class="'info-div'">
-              <span>
-                <h1>{{movies.show_title}}</h1>
-              </span><br/>
-              <span>{{movies.summary}}</span>
-              
-              <h4>{{movies.director}}</h4>
-                  {{movies.rating}}<br/>
-                  <hr/>
-            </div>
-
-        </div> 
-</body>
+  <head >
+    <title>Movie Rating</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="app.css"/>
+  </head>
+  <body ng-controller="directorController">
+    <div>
+      <input  type="text" placeholder="{{directorName}}" ng-model="directorName"/>
+      <button ng-click="searchDirector()">Submit</button>
+    </div>
+    <div ng-class="'movie-div'" ng-repeat="movie in movies" ng-show='requestComplete'>
+      <img ng-class="'imge'" ng-src="{{movie.poster}}"/>
+      <div ng-class="'info-div'">
+        <span>
+          <h1>{{movie.show_title}}</h1>
+        </span><br/>
+        <span>{{movie.summary}}</span>
+        <h4>{{movie.director}}</h4>
+        {{movie.rating}}<br/>
+        <hr/>
+      </div>
+    </div>
+    <div ng-show='error'>
+      <pre>
+        {{errorMesg}}
+      </pre>
+    </div>
+  </body>
 </html>
