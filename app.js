@@ -10,8 +10,7 @@
       $scope.searchDirector = function() {
         $scope.requestComplete = false;
         $http.get(
-          'http://netflixroulette.net/api/api.php?director=' +
-          $scope.directorName
+          'http://netflixroulette.net/api/api.php?director='+$scope.directorName
         ).success(function(data) {
           $scope.error = false;
           $scope.movies = data;
